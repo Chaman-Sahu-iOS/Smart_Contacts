@@ -1,0 +1,6 @@
+framework module Pods_SmartContacts {
+  umbrella header "Pods-SmartContacts-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,1009 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A71D5FDD747D5859FD61DE68 /* Pods_SmartContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9787F83C65BF92D3421CAA4 /* Pods_SmartContacts.framework */; };
+		CE2F4EF22240E446009C4926 /* logo_main.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2F4EF12240E446009C4926 /* logo_main.png */; };
+		CE2F4EF62242050B009C4926 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F4EF52242050B009C4926 /* DetailTableViewCell.swift */; };
+		CE41F2512270222700D86C21 /* SmartContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE41F24F2270222700D86C21 /* SmartContacts.xcdatamodeld */; };
+		CE41F2572270479100D86C21 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F2562270479100D86C21 /* Contact.swift */; };
+		CE41F25E2270486300D86C21 /* Contacts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F25C2270486300D86C21 /* Contacts+CoreDataClass.swift */; };
+		CE41F25F2270486300D86C21 /* Contacts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F25D2270486300D86C21 /* Contacts+CoreDataProperties.swift */; };
+		CE4780F32265B9B000A8B7AB /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4780F22265B9B000A8B7AB /* FavoriteVC.swift */; };
+		CE4780F52265B9CE00A8B7AB /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4780F42265B9CE00A8B7AB /* SettingsVC.swift */; };
+		CE4780F72265CF8700A8B7AB /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4780F62265CF8700A8B7AB /* MainTabBarVC.swift */; };
+		CE93D59B222D313A0008EB07 /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D59A222D313A0008EB07 /* ContactListVC.swift */; };
+		CE93D5A3222F91150008EB07 /* ContactDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D5A2222F91150008EB07 /* ContactDataManager.swift */; };
+		CEB1E14C2223CB2600EB020E /* ContactDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1E14B2223CB2600EB020E /* ContactDetailVC.swift */; };
+		CED4E549225209300072FEF3 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4E548225209300072FEF3 /* CustomTransition.swift */; };
+		CED56D842237B0C900D403A6 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED56D832237B0C900D403A6 /* ContactTableViewCell.swift */; };
+		CED56D86223B6FDE00D403A6 /* ContactSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED56D85223B6FDE00D403A6 /* ContactSearchVC.swift */; };
+		CEF3064B2223B16000285A1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3064A2223B16000285A1D /* AppDelegate.swift */; };
+		CEF3064D2223B16000285A1D /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF3064C2223B16000285A1D /* AddContactVC.swift */; };
+		CEF306522223B16100285A1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF306512223B16100285A1D /* Assets.xcassets */; };
+		CEF306552223B16100285A1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF306532223B16100285A1D /* LaunchScreen.storyboard */; };
+		D41DAB1422C6A82800D461A9 /* ProfileImageIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41DAB1322C6A82800D461A9 /* ProfileImageIC.swift */; };
+		D426512022CB3A8500C74A56 /* PhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426511F22CB3A8500C74A56 /* PhoneInterfaceController.swift */; };
+		D426512222CB3DFE00C74A56 /* PhoneRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426512122CB3DFE00C74A56 /* PhoneRowController.swift */; };
+		D426512422CB530800C74A56 /* FavouritesIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426512322CB530800C74A56 /* FavouritesIC.swift */; };
+		D426512622CB54ED00C74A56 /* FavouritesListRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426512522CB54ED00C74A56 /* FavouritesListRowController.swift */; };
+		D426512822CB642F00C74A56 /* GroupsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426512722CB642F00C74A56 /* GroupsIC.swift */; };
+		D426512E22CB657700C74A56 /* GroupsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426512D22CB657700C74A56 /* GroupsRowController.swift */; };
+		D426513122CB8D5400C74A56 /* GroupsDetailsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426513022CB8D5400C74A56 /* GroupsDetailsIC.swift */; };
+		D426513322CB8D7500C74A56 /* GroupDetailsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426513222CB8D7500C74A56 /* GroupDetailsRowController.swift */; };
+		D426519722CDE0BB00C74A56 /* MenuIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426519622CDE0BB00C74A56 /* MenuIC.swift */; };
+		D426519822CDFA9100C74A56 /* SmartContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE41F24F2270222700D86C21 /* SmartContacts.xcdatamodeld */; };
+		D426519A22CE16B400C74A56 /* DailPadIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426519922CE16B400C74A56 /* DailPadIC.swift */; };
+		D42CA84C22C62D3300349A1F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42CA84A22C62D3300349A1F /* Interface.storyboard */; };
+		D42CA84E22C62D3400349A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42CA84D22C62D3400349A1F /* Assets.xcassets */; };
+		D42CA85522C62D3500349A1F /* SmartContactsWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D42CA85422C62D3400349A1F /* SmartContactsWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D42CA85C22C62D3500349A1F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CA85B22C62D3500349A1F /* ExtensionDelegate.swift */; };
+		D42CA85E22C62D3500349A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42CA85D22C62D3500349A1F /* Assets.xcassets */; };
+		D43C93A32293CD450058565A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43C93A22293CD450058565A /* CloudKit.framework */; };
+		D45709E3228AF7E000CB8F22 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45709E2228AF7E000CB8F22 /* CoreLocation.framework */; };
+		D4586539228188EC00C1BE3C /* GroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4586538228188EC00C1BE3C /* GroupVC.swift */; };
+		D458653B228197E300C1BE3C /* CreateGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458653A228197E300C1BE3C /* CreateGroupVC.swift */; };
+		D458653D2281BA2B00C1BE3C /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458653C2281BA2B00C1BE3C /* GroupDetailsVC.swift */; };
+		D458656A2282A99F00C1BE3C /* GroupDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45865692282A99F00C1BE3C /* GroupDataManager.swift */; };
+		D45865712282B6DA00C1BE3C /* Groups+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458656F2282B6DA00C1BE3C /* Groups+CoreDataClass.swift */; };
+		D45865722282B6DA00C1BE3C /* Groups+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45865702282B6DA00C1BE3C /* Groups+CoreDataProperties.swift */; };
+		D458657522830DEC00C1BE3C /* GroupSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458657422830DEC00C1BE3C /* GroupSearchVC.swift */; };
+		D474C9DF22CF59A0009056CC /* SectionRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474C9DE22CF59A0009056CC /* SectionRowController.swift */; };
+		D474C9FF22D37D5C009056CC /* ContactQRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474C9FE22D37D5C009056CC /* ContactQRCodeVC.swift */; };
+		D474CA0122D3B937009056CC /* QRCodeImageIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474CA0022D3B937009056CC /* QRCodeImageIC.swift */; };
+		D47DBC1D22894A73009770B6 /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DBC1C22894A73009770B6 /* ResizeImage.swift */; };
+		D491DD7122C63A2A00673EE3 /* ContactListIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491DD7022C63A2A00673EE3 /* ContactListIC.swift */; };
+		D491DD7322C63A8900673EE3 /* ContactListRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491DD7222C63A8900673EE3 /* ContactListRowController.swift */; };
+		D491DD7422C63A9500673EE3 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F2562270479100D86C21 /* Contact.swift */; };
+		D491DD7522C63B0800673EE3 /* ContactDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D5A2222F91150008EB07 /* ContactDataManager.swift */; };
+		D491DD7622C63B1F00673EE3 /* Groups+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458656F2282B6DA00C1BE3C /* Groups+CoreDataClass.swift */; };
+		D491DD7722C63B2100673EE3 /* Groups+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45865702282B6DA00C1BE3C /* Groups+CoreDataProperties.swift */; };
+		D491DD7822C63B2400673EE3 /* Contacts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F25C2270486300D86C21 /* Contacts+CoreDataClass.swift */; };
+		D491DD7922C63B2700673EE3 /* Contacts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE41F25D2270486300D86C21 /* Contacts+CoreDataProperties.swift */; };
+		D491DD7B22C63B8600673EE3 /* ContactDetailIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491DD7A22C63B8600673EE3 /* ContactDetailIC.swift */; };
+		D4F569A8229D36A800DCAE3B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F569A7229D36A800DCAE3B /* AppSettings.swift */; };
+		D4F569AA229D5CAD00DCAE3B /* iCloudDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F569A9229D5CAD00DCAE3B /* iCloudDataManager.swift */; };
+		D4F569DF22A684F000DCAE3B /* dummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F569DE22A684F000DCAE3B /* dummyViewController.swift */; };
+		D4F56A2922AE80C000DCAE3B /* CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F56A2822AE80C000DCAE3B /* CustomVC.swift */; };
+		D4F59F9D22B0F448006B3B26 /* IntractiveModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F59F9C22B0F448006B3B26 /* IntractiveModalPresentationController.swift */; };
+		D4F59F9F22B0F657006B3B26 /* IntractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F59F9E22B0F657006B3B26 /* IntractiveModalTransitioningDelegate.swift */; };
+		D4F59FA122B3B5A4006B3B26 /* ContactProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F59FA022B3B5A4006B3B26 /* ContactProfileImage.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D42CA85622C62D3500349A1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEF3063F2223B16000285A1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D42CA85322C62D3400349A1F;
+			remoteInfo = "SmartContactsWatch Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D42CA86822C62D3500349A1F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D42CA85522C62D3500349A1F /* SmartContactsWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		257F95B58377809245170253 /* Pods-SmartContacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartContacts.release.xcconfig"; path = "Target Support Files/Pods-SmartContacts/Pods-SmartContacts.release.xcconfig"; sourceTree = "<group>"; };
+		904CFC5162BC023927F1702F /* Pods-SmartContacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartContacts.debug.xcconfig"; path = "Target Support Files/Pods-SmartContacts/Pods-SmartContacts.debug.xcconfig"; sourceTree = "<group>"; };
+		CE2F4EF12240E446009C4926 /* logo_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_main.png; sourceTree = "<group>"; };
+		CE2F4EF52242050B009C4926 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		CE41F2502270222700D86C21 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CE41F2562270479100D86C21 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		CE41F25C2270486300D86C21 /* Contacts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contacts+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE41F25D2270486300D86C21 /* Contacts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contacts+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE4780F22265B9B000A8B7AB /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		CE4780F42265B9CE00A8B7AB /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		CE4780F62265CF8700A8B7AB /* MainTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
+		CE695A2D22609974003E64FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE93D59A222D313A0008EB07 /* ContactListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListVC.swift; sourceTree = "<group>"; };
+		CE93D5A2222F91150008EB07 /* ContactDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDataManager.swift; sourceTree = "<group>"; };
+		CEB1E14B2223CB2600EB020E /* ContactDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailVC.swift; sourceTree = "<group>"; };
+		CED4E548225209300072FEF3 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
+		CED56D832237B0C900D403A6 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		CED56D85223B6FDE00D403A6 /* ContactSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSearchVC.swift; sourceTree = "<group>"; };
+		CEF306472223B16000285A1D /* SmartContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEF3064A2223B16000285A1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CEF3064C2223B16000285A1D /* AddContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
+		CEF306512223B16100285A1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEF306542223B16100285A1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CEF306562223B16100285A1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D41DAB1322C6A82800D461A9 /* ProfileImageIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageIC.swift; sourceTree = "<group>"; };
+		D426511F22CB3A8500C74A56 /* PhoneInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInterfaceController.swift; sourceTree = "<group>"; };
+		D426512122CB3DFE00C74A56 /* PhoneRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRowController.swift; sourceTree = "<group>"; };
+		D426512322CB530800C74A56 /* FavouritesIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesIC.swift; sourceTree = "<group>"; };
+		D426512522CB54ED00C74A56 /* FavouritesListRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRowController.swift; sourceTree = "<group>"; };
+		D426512722CB642F00C74A56 /* GroupsIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsIC.swift; sourceTree = "<group>"; };
+		D426512D22CB657700C74A56 /* GroupsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsRowController.swift; sourceTree = "<group>"; };
+		D426513022CB8D5400C74A56 /* GroupsDetailsIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsDetailsIC.swift; sourceTree = "<group>"; };
+		D426513222CB8D7500C74A56 /* GroupDetailsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsRowController.swift; sourceTree = "<group>"; };
+		D426519622CDE0BB00C74A56 /* MenuIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuIC.swift; sourceTree = "<group>"; };
+		D426519922CE16B400C74A56 /* DailPadIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailPadIC.swift; sourceTree = "<group>"; };
+		D42CA84822C62D3300349A1F /* SmartContactsWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartContactsWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D42CA84B22C62D3300349A1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D42CA84D22C62D3400349A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D42CA84F22C62D3400349A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D42CA85422C62D3400349A1F /* SmartContactsWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SmartContactsWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D42CA85B22C62D3500349A1F /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D42CA85D22C62D3500349A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D42CA85F22C62D3500349A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D43C93A12293CD400058565A /* SmartContacts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartContacts.entitlements; sourceTree = "<group>"; };
+		D43C93A22293CD450058565A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		D45709E2228AF7E000CB8F22 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D4586538228188EC00C1BE3C /* GroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVC.swift; sourceTree = "<group>"; };
+		D458653A228197E300C1BE3C /* CreateGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupVC.swift; sourceTree = "<group>"; };
+		D458653C2281BA2B00C1BE3C /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
+		D45865692282A99F00C1BE3C /* GroupDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDataManager.swift; sourceTree = "<group>"; };
+		D458656F2282B6DA00C1BE3C /* Groups+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Groups+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D45865702282B6DA00C1BE3C /* Groups+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Groups+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D458657422830DEC00C1BE3C /* GroupSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchVC.swift; sourceTree = "<group>"; };
+		D474C9DE22CF59A0009056CC /* SectionRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRowController.swift; sourceTree = "<group>"; };
+		D474C9FE22D37D5C009056CC /* ContactQRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactQRCodeVC.swift; sourceTree = "<group>"; };
+		D474CA0022D3B937009056CC /* QRCodeImageIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeImageIC.swift; sourceTree = "<group>"; };
+		D47DBC1C22894A73009770B6 /* ResizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
+		D491DD7022C63A2A00673EE3 /* ContactListIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListIC.swift; sourceTree = "<group>"; };
+		D491DD7222C63A8900673EE3 /* ContactListRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListRowController.swift; sourceTree = "<group>"; };
+		D491DD7A22C63B8600673EE3 /* ContactDetailIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailIC.swift; sourceTree = "<group>"; };
+		D4F569A7229D36A800DCAE3B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		D4F569A9229D5CAD00DCAE3B /* iCloudDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudDataManager.swift; sourceTree = "<group>"; };
+		D4F569DE22A684F000DCAE3B /* dummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummyViewController.swift; sourceTree = "<group>"; };
+		D4F56A2822AE80C000DCAE3B /* CustomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVC.swift; sourceTree = "<group>"; };
+		D4F59F9C22B0F448006B3B26 /* IntractiveModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntractiveModalPresentationController.swift; sourceTree = "<group>"; };
+		D4F59F9E22B0F657006B3B26 /* IntractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		D4F59FA022B3B5A4006B3B26 /* ContactProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactProfileImage.swift; sourceTree = "<group>"; };
+		D9787F83C65BF92D3421CAA4 /* Pods_SmartContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEF306442223B16000285A1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D43C93A32293CD450058565A /* CloudKit.framework in Frameworks */,
+				D45709E3228AF7E000CB8F22 /* CoreLocation.framework in Frameworks */,
+				A71D5FDD747D5859FD61DE68 /* Pods_SmartContacts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D42CA85122C62D3400349A1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B8E97974F265FE2DF68DCDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D43C93A22293CD450058565A /* CloudKit.framework */,
+				D45709E2228AF7E000CB8F22 /* CoreLocation.framework */,
+				D9787F83C65BF92D3421CAA4 /* Pods_SmartContacts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E77A0B4D19AB1F60CE91B98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				904CFC5162BC023927F1702F /* Pods-SmartContacts.debug.xcconfig */,
+				257F95B58377809245170253 /* Pods-SmartContacts.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE2F4EEF2240E372009C4926 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CE2F4EF12240E446009C4926 /* logo_main.png */,
+				CEF306512223B16100285A1D /* Assets.xcassets */,
+			);
+			name = Images;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		CEF3063E2223B16000285A1D = {
+			isa = PBXGroup;
+			children = (
+				CEF306492223B16000285A1D /* SmartContacts */,
+				D42CA84922C62D3300349A1F /* SmartContactsWatch */,
+				D42CA85822C62D3500349A1F /* SmartContactsWatch Extension */,
+				CEF306482223B16000285A1D /* Products */,
+				4E77A0B4D19AB1F60CE91B98 /* Pods */,
+				0B8E97974F265FE2DF68DCDD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CEF306482223B16000285A1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEF306472223B16000285A1D /* SmartContacts.app */,
+				D42CA84822C62D3300349A1F /* SmartContactsWatch.app */,
+				D42CA85422C62D3400349A1F /* SmartContactsWatch Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEF306492223B16000285A1D /* SmartContacts */ = {
+			isa = PBXGroup;
+			children = (
+				D43C93A12293CD400058565A /* SmartContacts.entitlements */,
+				CEF3064A2223B16000285A1D /* AppDelegate.swift */,
+				CEF306562223B16100285A1D /* Info.plist */,
+				CE695A2D22609974003E64FE /* GoogleService-Info.plist */,
+				CEF306532223B16100285A1D /* LaunchScreen.storyboard */,
+				D4F569DD22A684C900DCAE3B /* iPad */,
+				D45865412281C24000C1BE3C /* MainTabBar */,
+				D458656622829E3E00C1BE3C /* Contacts */,
+				D458656722829E4300C1BE3C /* Groups */,
+				D458656522829E3700C1BE3C /* Settings */,
+				D458653E2281C13800C1BE3C /* Managers */,
+				D458654522829DB200C1BE3C /* Core Data */,
+				D458656822829EFB00C1BE3C /* Common */,
+				CE2F4EEF2240E372009C4926 /* Images */,
+			);
+			path = SmartContacts;
+			sourceTree = "<group>";
+		};
+		D426512922CB643F00C74A56 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				D426512322CB530800C74A56 /* FavouritesIC.swift */,
+				D426512522CB54ED00C74A56 /* FavouritesListRowController.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		D426512A22CB644900C74A56 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				D491DD7022C63A2A00673EE3 /* ContactListIC.swift */,
+				D491DD7222C63A8900673EE3 /* ContactListRowController.swift */,
+				D491DD7A22C63B8600673EE3 /* ContactDetailIC.swift */,
+				D41DAB1322C6A82800D461A9 /* ProfileImageIC.swift */,
+				D474CA0022D3B937009056CC /* QRCodeImageIC.swift */,
+				D426519622CDE0BB00C74A56 /* MenuIC.swift */,
+				D426519922CE16B400C74A56 /* DailPadIC.swift */,
+				D474C9DE22CF59A0009056CC /* SectionRowController.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		D426512B22CB645300C74A56 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D426512722CB642F00C74A56 /* GroupsIC.swift */,
+				D426512D22CB657700C74A56 /* GroupsRowController.swift */,
+				D426513022CB8D5400C74A56 /* GroupsDetailsIC.swift */,
+				D426513222CB8D7500C74A56 /* GroupDetailsRowController.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D426512C22CB64AC00C74A56 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D426511F22CB3A8500C74A56 /* PhoneInterfaceController.swift */,
+				D426512122CB3DFE00C74A56 /* PhoneRowController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		D42CA84922C62D3300349A1F /* SmartContactsWatch */ = {
+			isa = PBXGroup;
+			children = (
+				D42CA84A22C62D3300349A1F /* Interface.storyboard */,
+				D42CA84D22C62D3400349A1F /* Assets.xcassets */,
+				D42CA84F22C62D3400349A1F /* Info.plist */,
+			);
+			path = SmartContactsWatch;
+			sourceTree = "<group>";
+		};
+		D42CA85822C62D3500349A1F /* SmartContactsWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D42CA85B22C62D3500349A1F /* ExtensionDelegate.swift */,
+				D426512C22CB64AC00C74A56 /* MainTabBar */,
+				D426512922CB643F00C74A56 /* Favourites */,
+				D426512A22CB644900C74A56 /* Contacts */,
+				D426512B22CB645300C74A56 /* Groups */,
+				D42CA85D22C62D3500349A1F /* Assets.xcassets */,
+				D42CA85F22C62D3500349A1F /* Info.plist */,
+			);
+			path = "SmartContactsWatch Extension";
+			sourceTree = "<group>";
+		};
+		D458653E2281C13800C1BE3C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CE93D5A2222F91150008EB07 /* ContactDataManager.swift */,
+				D45865692282A99F00C1BE3C /* GroupDataManager.swift */,
+				D4F569A9229D5CAD00DCAE3B /* iCloudDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D45865412281C24000C1BE3C /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE4780F62265CF8700A8B7AB /* MainTabBarVC.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		D458654522829DB200C1BE3C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				D458656F2282B6DA00C1BE3C /* Groups+CoreDataClass.swift */,
+				D45865702282B6DA00C1BE3C /* Groups+CoreDataProperties.swift */,
+				CE41F25C2270486300D86C21 /* Contacts+CoreDataClass.swift */,
+				CE41F25D2270486300D86C21 /* Contacts+CoreDataProperties.swift */,
+				CE41F24F2270222700D86C21 /* SmartContacts.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		D458656522829E3700C1BE3C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CE4780F42265B9CE00A8B7AB /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D458656622829E3E00C1BE3C /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				CE93D59A222D313A0008EB07 /* ContactListVC.swift */,
+				CED56D832237B0C900D403A6 /* ContactTableViewCell.swift */,
+				CED56D85223B6FDE00D403A6 /* ContactSearchVC.swift */,
+				CEB1E14B2223CB2600EB020E /* ContactDetailVC.swift */,
+				D4F59FA022B3B5A4006B3B26 /* ContactProfileImage.swift */,
+				D474C9FE22D37D5C009056CC /* ContactQRCodeVC.swift */,
+				CE2F4EF52242050B009C4926 /* DetailTableViewCell.swift */,
+				CEF3064C2223B16000285A1D /* AddContactVC.swift */,
+				CE4780F22265B9B000A8B7AB /* FavoriteVC.swift */,
+				CE41F2562270479100D86C21 /* Contact.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		D458656722829E4300C1BE3C /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D4586538228188EC00C1BE3C /* GroupVC.swift */,
+				D458657422830DEC00C1BE3C /* GroupSearchVC.swift */,
+				D458653A228197E300C1BE3C /* CreateGroupVC.swift */,
+				D458653C2281BA2B00C1BE3C /* GroupDetailsVC.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D458656822829EFB00C1BE3C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CED4E548225209300072FEF3 /* CustomTransition.swift */,
+				D47DBC1C22894A73009770B6 /* ResizeImage.swift */,
+				D4F569A7229D36A800DCAE3B /* AppSettings.swift */,
+				D4F56A2822AE80C000DCAE3B /* CustomVC.swift */,
+				D4F59F9C22B0F448006B3B26 /* IntractiveModalPresentationController.swift */,
+				D4F59F9E22B0F657006B3B26 /* IntractiveModalTransitioningDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D4F569DD22A684C900DCAE3B /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D4F569DE22A684F000DCAE3B /* dummyViewController.swift */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEF306462223B16000285A1D /* SmartContacts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEF306592223B16100285A1D /* Build configuration list for PBXNativeTarget "SmartContacts" */;
+			buildPhases = (
+				6C7D6ED7A3F6142C02928A60 /* [CP] Check Pods Manifest.lock */,
+				CEF306432223B16000285A1D /* Sources */,
+				CEF306442223B16000285A1D /* Frameworks */,
+				CEF306452223B16000285A1D /* Resources */,
+				DF35258B05AEEBF53BE2B483 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartContacts;
+			productName = DemoApp;
+			productReference = CEF306472223B16000285A1D /* SmartContacts.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D42CA84722C62D3300349A1F /* SmartContactsWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D42CA86922C62D3500349A1F /* Build configuration list for PBXNativeTarget "SmartContactsWatch" */;
+			buildPhases = (
+				D42CA84622C62D3300349A1F /* Resources */,
+				D42CA86822C62D3500349A1F /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D42CA85722C62D3500349A1F /* PBXTargetDependency */,
+			);
+			name = SmartContactsWatch;
+			productName = SmartContactsWatch;
+			productReference = D42CA84822C62D3300349A1F /* SmartContactsWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D42CA85322C62D3400349A1F /* SmartContactsWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D42CA86722C62D3500349A1F /* Build configuration list for PBXNativeTarget "SmartContactsWatch Extension" */;
+			buildPhases = (
+				D42CA85022C62D3400349A1F /* Sources */,
+				D42CA85122C62D3400349A1F /* Frameworks */,
+				D42CA85222C62D3400349A1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SmartContactsWatch Extension";
+			productName = "SmartContactsWatch Extension";
+			productReference = D42CA85422C62D3400349A1F /* SmartContactsWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEF3063F2223B16000285A1D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Zoho;
+				TargetAttributes = {
+					CEF306462223B16000285A1D = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+					D42CA84722C62D3300349A1F = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					D42CA85322C62D3400349A1F = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = CEF306422223B16000285A1D /* Build configuration list for PBXProject "SmartContacts" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEF3063E2223B16000285A1D;
+			productRefGroup = CEF306482223B16000285A1D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEF306462223B16000285A1D /* SmartContacts */,
+				D42CA84722C62D3300349A1F /* SmartContactsWatch */,
+				D42CA85322C62D3400349A1F /* SmartContactsWatch Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEF306452223B16000285A1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2F4EF22240E446009C4926 /* logo_main.png in Resources */,
+				CEF306552223B16100285A1D /* LaunchScreen.storyboard in Resources */,
+				CEF306522223B16100285A1D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D42CA84622C62D3300349A1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D42CA84E22C62D3400349A1F /* Assets.xcassets in Resources */,
+				D42CA84C22C62D3300349A1F /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D42CA85222C62D3400349A1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D42CA85E22C62D3500349A1F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C7D6ED7A3F6142C02928A60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartContacts-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF35258B05AEEBF53BE2B483 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartContacts/Pods-SmartContacts-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartContacts/Pods-SmartContacts-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartContacts/Pods-SmartContacts-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEF306432223B16000285A1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4586539228188EC00C1BE3C /* GroupVC.swift in Sources */,
+				CE93D5A3222F91150008EB07 /* ContactDataManager.swift in Sources */,
+				D458653B228197E300C1BE3C /* CreateGroupVC.swift in Sources */,
+				D4F59FA122B3B5A4006B3B26 /* ContactProfileImage.swift in Sources */,
+				D4F59F9F22B0F657006B3B26 /* IntractiveModalTransitioningDelegate.swift in Sources */,
+				D4F59F9D22B0F448006B3B26 /* IntractiveModalPresentationController.swift in Sources */,
+				D4F569DF22A684F000DCAE3B /* dummyViewController.swift in Sources */,
+				CEF3064D2223B16000285A1D /* AddContactVC.swift in Sources */,
+				CE41F25F2270486300D86C21 /* Contacts+CoreDataProperties.swift in Sources */,
+				CE4780F32265B9B000A8B7AB /* FavoriteVC.swift in Sources */,
+				CE41F25E2270486300D86C21 /* Contacts+CoreDataClass.swift in Sources */,
+				D458656A2282A99F00C1BE3C /* GroupDataManager.swift in Sources */,
+				CE41F2572270479100D86C21 /* Contact.swift in Sources */,
+				D458653D2281BA2B00C1BE3C /* GroupDetailsVC.swift in Sources */,
+				CE41F2512270222700D86C21 /* SmartContacts.xcdatamodeld in Sources */,
+				CE4780F72265CF8700A8B7AB /* MainTabBarVC.swift in Sources */,
+				CE93D59B222D313A0008EB07 /* ContactListVC.swift in Sources */,
+				D47DBC1D22894A73009770B6 /* ResizeImage.swift in Sources */,
+				D45865722282B6DA00C1BE3C /* Groups+CoreDataProperties.swift in Sources */,
+				D474C9FF22D37D5C009056CC /* ContactQRCodeVC.swift in Sources */,
+				CEB1E14C2223CB2600EB020E /* ContactDetailVC.swift in Sources */,
+				D45865712282B6DA00C1BE3C /* Groups+CoreDataClass.swift in Sources */,
+				CE4780F52265B9CE00A8B7AB /* SettingsVC.swift in Sources */,
+				CED56D842237B0C900D403A6 /* ContactTableViewCell.swift in Sources */,
+				D4F569AA229D5CAD00DCAE3B /* iCloudDataManager.swift in Sources */,
+				CED4E549225209300072FEF3 /* CustomTransition.swift in Sources */,
+				D458657522830DEC00C1BE3C /* GroupSearchVC.swift in Sources */,
+				CEF3064B2223B16000285A1D /* AppDelegate.swift in Sources */,
+				CE2F4EF62242050B009C4926 /* DetailTableViewCell.swift in Sources */,
+				D4F56A2922AE80C000DCAE3B /* CustomVC.swift in Sources */,
+				D4F569A8229D36A800DCAE3B /* AppSettings.swift in Sources */,
+				CED56D86223B6FDE00D403A6 /* ContactSearchVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D42CA85022C62D3400349A1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D491DD7722C63B2100673EE3 /* Groups+CoreDataProperties.swift in Sources */,
+				D491DD7B22C63B8600673EE3 /* ContactDetailIC.swift in Sources */,
+				D41DAB1422C6A82800D461A9 /* ProfileImageIC.swift in Sources */,
+				D474CA0122D3B937009056CC /* QRCodeImageIC.swift in Sources */,
+				D426519A22CE16B400C74A56 /* DailPadIC.swift in Sources */,
+				D491DD7422C63A9500673EE3 /* Contact.swift in Sources */,
+				D491DD7922C63B2700673EE3 /* Contacts+CoreDataProperties.swift in Sources */,
+				D426512822CB642F00C74A56 /* GroupsIC.swift in Sources */,
+				D474C9DF22CF59A0009056CC /* SectionRowController.swift in Sources */,
+				D426519822CDFA9100C74A56 /* SmartContacts.xcdatamodeld in Sources */,
+				D426513322CB8D7500C74A56 /* GroupDetailsRowController.swift in Sources */,
+				D426512622CB54ED00C74A56 /* FavouritesListRowController.swift in Sources */,
+				D491DD7822C63B2400673EE3 /* Contacts+CoreDataClass.swift in Sources */,
+				D426513122CB8D5400C74A56 /* GroupsDetailsIC.swift in Sources */,
+				D426512222CB3DFE00C74A56 /* PhoneRowController.swift in Sources */,
+				D491DD7522C63B0800673EE3 /* ContactDataManager.swift in Sources */,
+				D426519722CDE0BB00C74A56 /* MenuIC.swift in Sources */,
+				D491DD7122C63A2A00673EE3 /* ContactListIC.swift in Sources */,
+				D426512022CB3A8500C74A56 /* PhoneInterfaceController.swift in Sources */,
+				D491DD7322C63A8900673EE3 /* ContactListRowController.swift in Sources */,
+				D42CA85C22C62D3500349A1F /* ExtensionDelegate.swift in Sources */,
+				D426512E22CB657700C74A56 /* GroupsRowController.swift in Sources */,
+				D491DD7622C63B1F00673EE3 /* Groups+CoreDataClass.swift in Sources */,
+				D426512422CB530800C74A56 /* FavouritesIC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D42CA85722C62D3500349A1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D42CA85322C62D3400349A1F /* SmartContactsWatch Extension */;
+			targetProxy = D42CA85622C62D3500349A1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CEF306532223B16100285A1D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF306542223B16100285A1D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D42CA84A22C62D3300349A1F /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D42CA84B22C62D3300349A1F /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CEF306572223B16100285A1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CEF306582223B16100285A1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEF3065A2223B16100285A1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 904CFC5162BC023927F1702F /* Pods-SmartContacts.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SmartContacts/SmartContacts.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				INFOPLIST_FILE = SmartContacts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Debug;
+		};
+		CEF3065B2223B16100285A1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 257F95B58377809245170253 /* Pods-SmartContacts.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SmartContacts/SmartContacts.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				INFOPLIST_FILE = SmartContacts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Release;
+		};
+		D42CA86322C62D3500349A1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				IBSC_MODULE = SmartContactsWatch_Extension;
+				INFOPLIST_FILE = SmartContactsWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Debug;
+		};
+		D42CA86422C62D3500349A1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				IBSC_MODULE = SmartContactsWatch_Extension;
+				INFOPLIST_FILE = SmartContactsWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela.watchapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Release;
+		};
+		D42CA86522C62D3500349A1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				INFOPLIST_FILE = "SmartContactsWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela.watchapp.watchExtension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Debug;
+		};
+		D42CA86622C62D3500349A1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7AU6NGM9Z2;
+				INFOPLIST_FILE = "SmartContactsWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.manage.raagleela.watchapp.watchExtension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEF306422223B16000285A1D /* Build configuration list for PBXProject "SmartContacts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEF306572223B16100285A1D /* Debug */,
+				CEF306582223B16100285A1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEF306592223B16100285A1D /* Build configuration list for PBXNativeTarget "SmartContacts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEF3065A2223B16100285A1D /* Debug */,
+				CEF3065B2223B16100285A1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D42CA86722C62D3500349A1F /* Build configuration list for PBXNativeTarget "SmartContactsWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D42CA86522C62D3500349A1F /* Debug */,
+				D42CA86622C62D3500349A1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D42CA86922C62D3500349A1F /* Build configuration list for PBXNativeTarget "SmartContactsWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D42CA86322C62D3500349A1F /* Debug */,
+				D42CA86422C62D3500349A1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE41F24F2270222700D86C21 /* SmartContacts.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE41F2502270222700D86C21 /* Model.xcdatamodel */,
+			);
+			currentVersion = CE41F2502270222700D86C21 /* Model.xcdatamodel */;
+			path = SmartContacts.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CEF3063F2223B16000285A1D /* Project object */;
+}

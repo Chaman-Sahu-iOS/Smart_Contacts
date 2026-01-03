@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G3F-13-cxn">
+    <device id="watch44" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+    </dependencies>
+    <scenes>
+        <!--Phone-->
+        <scene sceneID="nHC-Nr-uNu">
+            <objects>
+                <controller identifier="PhoneList" title="Phone" id="G3F-13-cxn" customClass="PhoneInterfaceController" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <table alignment="left" id="Bbj-Ef-5tu">
+                            <items>
+                                <tableRow identifier="PhoneRow" id="AhZ-DI-K6Y" customClass="PhoneRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" spacing="10" id="jhd-rN-nLS">
+                                        <items>
+                                            <imageView width="25" height="25" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="bvJ-9h-HiD">
+                                                <color key="tintColor" red="0.39126911759999999" green="0.69990110400000005" blue="0.2430127859" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </imageView>
+                                            <label alignment="left" verticalAlignment="center" text="Label" id="t6k-xq-vMZ"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="tabBarImage" destination="bvJ-9h-HiD" id="CRl-DC-FbG"/>
+                                        <outlet property="tabBarItem" destination="t6k-xq-vMZ" id="D12-v6-1A8"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="phoneTableData" destination="Bbj-Ef-5tu" id="atg-tg-dWF"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-891" y="-339"/>
+        </scene>
+        <!--Menu-->
+        <scene sceneID="pwF-Ik-rJR">
+            <objects>
+                <controller identifier="Menu" title="Menu" id="pNA-PA-Tgg" customClass="MenuIC" customModule="SmartContactsWatch_Extension">
+                    <menu key="menu" id="Lux-Gt-nBk">
+                        <items>
+                            <menuItem title="Add" icon="add" id="HFQ-88-yGe">
+                                <connections>
+                                    <action selector="addMenu" destination="pNA-PA-Tgg" id="TFW-6d-Dv9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="call" image="call_icon" id="guu-JU-9Ll">
+                                <connections>
+                                    <action selector="callMenu" destination="pNA-PA-Tgg" id="kV1-7I-aQ2"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-913" y="23"/>
+        </scene>
+        <!--Favourites-->
+        <scene sceneID="SVn-Gb-wrS">
+            <objects>
+                <controller identifier="FavouritesList" title="Favourites" id="4bm-4n-KfJ" customClass="FavouritesIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <table alignment="left" id="nNF-vI-9Bu">
+                            <items>
+                                <tableRow identifier="FavouritesListRow" id="dyB-9H-gZT" customClass="FavouritesListRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="x1p-0x-DNk">
+                                        <items>
+                                            <label height="1" alignment="left" verticalAlignment="center" text="Favourites" id="wtW-sk-Vnw"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="favouriteLabel" destination="wtW-sk-Vnw" id="JTQ-kC-eng"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Favourites" id="KG3-CB-RpO"/>
+                    </items>
+                    <connections>
+                        <outlet property="favouritesTable" destination="nNF-vI-9Bu" id="mGu-XE-boS"/>
+                        <outlet property="noFavouritesLabel" destination="KG3-CB-RpO" id="bea-TW-yfN"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-608" y="-660"/>
+        </scene>
+        <!--DailPad-->
+        <scene sceneID="dKG-sC-7a4">
+            <objects>
+                <controller identifier="DailPad" hidesWhenLoading="NO" id="pVi-G9-o4k" customClass="DailPadIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" spacing="2" id="nOR-C2-TxZ">
+                            <items>
+                                <group width="0.90000000000000002" alignment="center" spacing="2" id="gDn-WB-CCh">
+                                    <items>
+                                        <label alignment="center" text="...." id="jqT-ww-rkE"/>
+                                        <button width="30" height="22" alignment="right" backgroundImage="delete_icon" id="A6Q-lg-amT">
+                                            <connections>
+                                                <action selector="deleteButton" destination="pVi-G9-o4k" id="fDF-vy-huH"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group alignment="center" spacing="3" id="Iih-sZ-hl6">
+                                    <items>
+                                        <button width="55" height="40" alignment="left" title="1" id="BIA-kv-1ww">
+                                            <connections>
+                                                <action selector="one" destination="pVi-G9-o4k" id="8F1-HJ-4tt"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="2" id="fbI-I6-yOo">
+                                            <connections>
+                                                <action selector="two" destination="pVi-G9-o4k" id="re2-xS-PTc"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="3" id="DRi-4m-CRV">
+                                            <connections>
+                                                <action selector="three" destination="pVi-G9-o4k" id="I0G-Z3-SL2"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group alignment="center" spacing="2" id="79d-dd-BAq">
+                                    <items>
+                                        <button width="55" height="40" alignment="left" title="4" id="Vm7-22-vly">
+                                            <connections>
+                                                <action selector="four" destination="pVi-G9-o4k" id="8nr-hk-0Oh"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="5" id="Ck1-0f-sVX">
+                                            <connections>
+                                                <action selector="five" destination="pVi-G9-o4k" id="OC5-wD-lpj"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="6" id="C23-tK-qRO">
+                                            <connections>
+                                                <action selector="six" destination="pVi-G9-o4k" id="2Fb-Dk-JAs"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group alignment="center" spacing="2" id="4we-Vg-PaM">
+                                    <items>
+                                        <button width="55" height="40" alignment="left" title="7" id="jah-eB-ffA">
+                                            <connections>
+                                                <action selector="seven" destination="pVi-G9-o4k" id="RjM-lP-PXQ"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="8" id="gXe-i9-MOz">
+                                            <connections>
+                                                <action selector="eight" destination="pVi-G9-o4k" id="d6I-Do-4x4"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="9" id="KJd-s4-0oJ">
+                                            <connections>
+                                                <action selector="nine" destination="pVi-G9-o4k" id="VrW-Hb-Emc"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group alignment="center" spacing="2" id="CMj-k6-EzN">
+                                    <items>
+                                        <button width="55" height="40" alignment="left" title="+" id="wki-Ow-o7H">
+                                            <connections>
+                                                <action selector="plus" destination="pVi-G9-o4k" id="FA5-Z8-D0m"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" title="0" id="KWc-6u-2w5">
+                                            <connections>
+                                                <action selector="zero" destination="pVi-G9-o4k" id="DWZ-cQ-M9Q"/>
+                                            </connections>
+                                        </button>
+                                        <button width="55" height="40" alignment="left" backgroundImage="call_icon" id="jWA-Tj-Wrj">
+                                            <connections>
+                                                <action selector="dial" destination="pVi-G9-o4k" id="Dfb-gL-M6y"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="dialLabel" destination="jqT-ww-rkE" id="mcw-pW-XSv"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-341" y="-651"/>
+        </scene>
+        <!--Contacts-->
+        <scene sceneID="tfb-LX-UXy">
+            <objects>
+                <controller identifier="ContactList" title="Contacts" id="Byd-LA-EsU" customClass="ContactListIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <table alignment="left" id="y2g-ci-cw6">
+                            <items>
+                                <tableRow identifier="SectionsTitlesRow" selectable="NO" id="lo8-nw-LF0" customClass="SectionRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" height="20" alignment="left" id="LhI-Tf-beE">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="bottom" text="Label" id="bff-c4-HYK">
+                                                <fontDescription key="font" type="system" pointSize="12"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="sectionLabel" destination="bff-c4-HYK" id="U2T-v4-77j"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="ContactListRow" id="WMd-U2-3Ln" customClass="ContactListRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" height="35" alignment="left" layout="vertical" spacing="6" id="g55-CU-do7">
+                                        <items>
+                                            <group width="1" alignment="left" id="dAi-NY-pxn">
+                                                <items>
+                                                    <label height="1" alignment="left" verticalAlignment="center" text="Name" id="PUb-Z6-XO4"/>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="nameLabel" destination="PUb-Z6-XO4" id="Stq-m5-5P9"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Contacts" id="pYE-Um-7Rg"/>
+                    </items>
+                    <menu key="menu" id="7ed-rx-TDO">
+                        <items>
+                            <menuItem title="New Call" image="call_icon" id="vJU-hi-qyg">
+                                <connections>
+                                    <action selector="callMenuTapped" destination="Byd-LA-EsU" id="Xxj-yL-qGW"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="New Message" image="msg_icon" id="mTS-LU-IEi">
+                                <connections>
+                                    <action selector="msgMenuTapped" destination="Byd-LA-EsU" id="zYm-fI-cPn"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="contactListTable" destination="y2g-ci-cw6" id="8e9-Ms-djI"/>
+                        <outlet property="noContactsLabel" destination="pYE-Um-7Rg" id="ypY-CG-cWX"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-608" y="-338"/>
+        </scene>
+        <!--Groups-->
+        <scene sceneID="rPa-gS-Y46">
+            <objects>
+                <controller identifier="GroupsList" title="Groups" id="lMZ-Zg-aMW" customClass="GroupsIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <table alignment="left" id="qT7-N6-nW9">
+                            <items>
+                                <tableRow identifier="GroupsRow" id="2ph-Oh-cep" customClass="GroupsRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="AWc-rB-wXK">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Groups" id="5Mz-68-ApE"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="groupNameLabel" destination="5Mz-68-ApE" id="oL0-Ix-pGr"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" hidden="YES" text="No Groups" id="fYU-gB-p19"/>
+                    </items>
+                    <connections>
+                        <outlet property="groupsTable" destination="qT7-N6-nW9" id="6sp-mT-ffk"/>
+                        <outlet property="noGroupsLabel" destination="fYU-gB-p19" id="aut-M4-7V5"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-608" y="23"/>
+        </scene>
+        <!--GroupsDetails-->
+        <scene sceneID="DeY-gv-99g">
+            <objects>
+                <controller identifier="GroupsDetails" title="GroupsDetails" id="ghC-kW-iCn" customClass="GroupsDetailsIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <table alignment="left" id="7lv-UC-jAP">
+                            <items>
+                                <tableRow identifier="GroupsDetailsRow" id="d59-mf-fTC" customClass="GroupDetailsRowController" customModule="SmartContactsWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="ilU-sa-Wlo">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Group Details" id="s8q-VT-jcP"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="groupsDetailsLabel" destination="s8q-VT-jcP" id="a1N-ws-4Bg"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="groupsDetailsTable" destination="7lv-UC-jAP" id="Che-OT-HTj"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-342" y="23"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="se2-01-dUM">
+            <objects>
+                <controller identifier="ContactDetail" title="Info" hidesWhenLoading="NO" id="Ffu-TK-Kvf" customClass="ContactDetailIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <group width="1" widthAdjustment="-10" alignment="center" id="pPn-Wk-6AJ">
+                            <items>
+                                <label height="1" alignment="left" verticalAlignment="center" text="Chaman Sahu" numberOfLines="0" id="788-ZG-dSd">
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                                <group width="40" height="40" alignment="right" verticalAlignment="center" radius="20" id="xNa-Zt-2Ew">
+                                    <items>
+                                        <button width="40" height="40" alignment="right" verticalAlignment="center" backgroundImage="default_user" id="0Xu-GM-RFx">
+                                            <connections>
+                                                <action selector="contactImageButtonTapped" destination="Ffu-TK-Kvf" id="jYo-Bs-pvQ"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="6" bottom="0.0"/>
+                        </group>
+                        <separator width="1" widthAdjustment="-10" alignment="center" alpha="0.69999999999999996" id="TFx-VU-VJ6">
+                            <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
+                        <group width="1" alignment="left" layout="vertical" spacing="10" id="3d9-XQ-RXm">
+                            <items>
+                                <label alignment="center" text="Contacts" id="604-qf-OZO">
+                                    <fontDescription key="font" type="system" pointSize="12"/>
+                                </label>
+                                <group width="0.80000000000000004" alignment="center" id="3Ub-AL-lC6">
+                                    <items>
+                                        <button width="50" height="50" alignment="left" backgroundImage="call_icon" id="6Lq-tm-jsh">
+                                            <connections>
+                                                <action selector="phoneButtonTapped" destination="Ffu-TK-Kvf" id="gwF-gO-Y1n"/>
+                                            </connections>
+                                        </button>
+                                        <button width="50" height="50" alignment="right" backgroundImage="msg_icon" id="SYa-gr-i8C">
+                                            <connections>
+                                                <action selector="msgButtonTapped" destination="Ffu-TK-Kvf" id="c6N-sk-CyH"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="0.80000000000000004" alignment="center" id="1kw-Zi-a5M">
+                                    <items>
+                                        <button width="50" height="50" alignment="left" verticalAlignment="center" backgroundImage="mail_icon" id="tns-Tj-vM2">
+                                            <connections>
+                                                <action selector="mailButtonTapped" destination="Ffu-TK-Kvf" id="G4L-IL-LMU"/>
+                                            </connections>
+                                        </button>
+                                        <button width="50" height="50" alignment="right" backgroundImage="qr_code_icon" id="ctL-ov-8vI">
+                                            <connections>
+                                                <action selector="qrCodeButtonTapped" destination="Ffu-TK-Kvf" id="YQV-J0-Su3"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="contactImageButton" destination="0Xu-GM-RFx" id="ryV-3p-m8P"/>
+                        <outlet property="contactMailButton" destination="tns-Tj-vM2" id="C4B-BP-OXU"/>
+                        <outlet property="contactMsgButton" destination="SYa-gr-i8C" id="2lf-dh-zMT"/>
+                        <outlet property="contactName" destination="788-ZG-dSd" id="HUF-FC-srB"/>
+                        <outlet property="contactPhoneButton" destination="6Lq-tm-jsh" id="vTE-Z0-hUk"/>
+                        <outlet property="qrCodeButton" destination="ctL-ov-8vI" id="6Ad-Rg-iSl"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-381" y="-338"/>
+        </scene>
+        <!--Back-->
+        <scene sceneID="brF-I1-0L5">
+            <objects>
+                <controller identifier="ProfileImage" title="Back" id="mvJ-6D-Tel" customClass="ProfileImageIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" id="DdJ-M9-iJM">
+                            <items>
+                                <button width="1" height="1" alignment="center" verticalAlignment="center" id="xNi-Dj-IvN">
+                                    <connections>
+                                        <action selector="profileImageButtonTapped" destination="mvJ-6D-Tel" id="TVm-bi-0h2"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="profileImage" destination="xNi-Dj-IvN" id="bgC-wD-2Xi"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-140" y="-338"/>
+        </scene>
+        <!--Qr Code-->
+        <scene sceneID="APt-2v-GFv">
+            <objects>
+                <controller identifier="QRCodeImage" title="Qr Code" id="mtf-XJ-bS1" customClass="QRCodeImageIC" customModule="SmartContactsWatch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" id="9Pi-rl-P5E">
+                            <items>
+                                <button width="1" widthAdjustment="-5" height="1" heightAdjustment="-5" alignment="center" verticalAlignment="center" id="2y5-9N-apQ">
+                                    <connections>
+                                        <action selector="qrCodeImageButtonTapped" destination="mtf-XJ-bS1" id="QFg-Bc-52a"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="qrCodeImageButton" destination="2y5-9N-apQ" id="9l7-Ci-lTb"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="86" y="-338"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.39126911759376526" green="0.69990110397338867" blue="0.24301278591156006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+</document>
