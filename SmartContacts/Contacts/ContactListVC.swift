@@ -634,7 +634,8 @@ class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let configuration = GIDConfiguration(clientID: clientID)
 
         GIDSignIn.sharedInstance.configuration = configuration
-        GIDSignIn.sharedInstance.signIn(withPresenting: self, hint: nil, additionalScopes: ["https://www.googleapis.com/auth/contacts"]) { result, error in
+        // Request read-only access to Google Contacts via People API
+        GIDSignIn.sharedInstance.signIn(withPresenting: self, hint: nil, additionalScopes: ["https://www.googleapis.com/auth/contacts.readonly"]) { result, error in
             if let error = error {
                 print("Google sign-in failed: \(error.localizedDescription)")
                 return
@@ -653,103 +654,113 @@ class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func getGmailContacts() {
-        
         guard let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString else {
             print("Missing access token; ensure sign-in succeeded and scope granted.")
             MBProgressHUD.hide(for: self.view, animated: true)
             return
         }
-        let contactsAPIURL = ("https://www.google.com/m8/feeds/contacts/default/full?access_token=\(accessToken)&max-results=\(999)&alt=json&v=3.0")
         
-        guard let url = URL(string: contactsAPIURL) else { return }
-        
-        URLSession.shared.dataTask(with: url, completionHandler: {
-            (data, response, error) in
+        func fetchPage(pageToken: String?) {
+            var components = URLComponents(string: "https://people.googleapis.com/v1/people/me/connections")!
+            var queryItems: [URLQueryItem] = [
+                URLQueryItem(name: "personFields", value: "names,emailAddresses,phoneNumbers,organizations,photos"),
+                URLQueryItem(name: "pageSize", value: "1000")
+            ]
+            if let token = pageToken { queryItems.append(URLQueryItem(name: "pageToken", value: token)) }
+            components.queryItems = queryItems
+            guard let url = components.url else { return }
             
-            if(error != nil){
-                print("Error with fetching Google Contacts ", error?.localizedDescription as Any)
-            }else{
+            var request = URLRequest(url: url)
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error fetching People API contacts: \(error.localizedDescription)")
+                    DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
+                    return
+                }
+                guard let http = response as? HTTPURLResponse else { return }
+                guard let data = data else { return }
+                if !(200...299).contains(http.statusCode) {
+                    let body = String(data: data, encoding: .utf8) ?? "<non-UTF8 body>"
+                    print("People API HTTP \(http.statusCode): \(body)")
+                    DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
+                    return
+                }
                 do {
-                    let resultsDictionary   =   try JSONSerialization.jsonObject(with: data!, options: []) as!  Dictionary<String, AnyObject>
-                    let feedContacts        =   resultsDictionary["feed"] as! [String:AnyObject]
-                    let entryContacts       =   feedContacts["entry"] as! NSArray
-                    
-                    for aContact in entryContacts{
-                        
+                    guard let results = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                        print("People API response is not a JSON object")
+                        DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
+                        return
+                    }
+                    let connections = results["connections"] as? [[String: Any]] ?? []
+                    for person in connections {
                         DispatchQueue.main.async {
-                            
-                            let tempContact = aContact as! [String:Any]
                             let contact = Contact()
-                            
                             contact.contactID = Int32(Int.random(in: 0...1000000000))
                             
-                            if let nameArray = tempContact["gd$name"] as? [String:Any]{
-                                
-                                if let firstNameArray = nameArray["gd$givenName"] as? [String:Any] {
-                                    contact.firstName  = (firstNameArray["$t"] as? String) ?? ""
+                            if let names = person["names"] as? [[String: Any]] {
+                                let name0 = names.first
+                                contact.firstName = name0?["givenName"] as? String ?? ""
+                                contact.lastName  = name0?["familyName"] as? String ?? ""
+                                if contact.firstName == "" && contact.lastName == "" {
+                                    // Fallback to displayName if parts missing
+                                    if let displayName = name0?["displayName"] as? String {
+                                        let parts = displayName.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+                                        contact.firstName = parts.first.map(String.init) ?? displayName
+                                        contact.lastName = parts.count > 1 ? String(parts[1]) : ""
+                                    }
                                 }
-                                if let lastNameArray  = nameArray["gd$familyName"] as? [String: Any] {
-                                    contact.lastName   = (lastNameArray["$t"] as? String) ?? ""
-                                }
                             }
-                            
-                            if let companyArray = tempContact["gd$organization"] as? [[String:Any]]{
-                                let orgArray = companyArray[0]["gd$orgName"] as! [String:Any]
-                                contact.companyName = (orgArray["$t"] as? String) ?? ""
+                            if let orgs = person["organizations"] as? [[String: Any]] {
+                                contact.companyName = orgs.first?["name"] as? String ?? ""
                             }
-                            
-                            if let numberArray = tempContact["gd$phoneNumber"] as? [[String:Any]]{
-                                contact.mobile = (numberArray[0]["$t"] as? String) ?? ""
+                            if let phones = person["phoneNumbers"] as? [[String: Any]] {
+                                contact.mobile = phones.first?["value"] as? String ?? ""
                             }
-                            
-                            
-                            if let emailArray = tempContact["gd$email"] as? [[String:Any]]{
-                                contact.email = emailArray[0]["address"] as? String ?? ""
+                            if let emails = person["emailAddresses"] as? [[String: Any]] {
+                                contact.email = emails.first?["value"] as? String ?? ""
                             }
-                            
-                            if let imageArray = tempContact["link"] as? [[String:Any]] {
-                                let imageURL = imageArray[0]["href"] as! String
-                                
-                                let urlWithAccessToken = "\(imageURL)&access_token=\(accessToken)"
-                                let url = URL(string: urlWithAccessToken)
-                                
-                                let data = try? Data(contentsOf: url!)
-                                if let imageData = data {
+                            if let photos = person["photos"] as? [[String: Any]],
+                               let urlString = photos.first?["url"] as? String,
+                               let photoURL = URL(string: urlString + "?access_token=\(accessToken)") {
+                                if let imageData = try? Data(contentsOf: photoURL) {
                                     contact.contactImage = UIImage(data: imageData)
                                 }
                             }
                             
-                            // If Any field is NULL the initialize with ""
                             self.ifContactValueNill(contact: contact)
-                            
-                            // save a single contact in ContactDatabase
-                            if contact.firstName != "" {
+                            if contact.firstName != "" || contact.lastName != "" {
                                 ContactDataManager.sharedManager.add(contact: contact)
-                                
-                                // If iCloud is on Then save on Cloud
-                                let isSync = AppSettings.shared.isSynchWithICloud
-                                if isSync == true {
+                                if AppSettings.shared.isSynchWithICloud == true {
                                     SettingsVC.shareManager.saveToiCloud(contact: contact)
                                 }
                             }
                         }
                     }
-                    
-                    // Save all details in Contact Database
-                    DispatchQueue.main.async{
-                        ContactDataManager.sharedManager.saveContactList()
-                        
-                        self.refreshContactTableList()
-                        
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        self.signoutFromGoogle()
-                    };
+                    let nextToken = results["nextPageToken"] as? String
+                    if let nextToken = nextToken, !nextToken.isEmpty {
+                        fetchPage(pageToken: nextToken)
+                    } else {
+                        DispatchQueue.main.async {
+                            ContactDataManager.sharedManager.saveContactList()
+                            self.refreshContactTableList()
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.signoutFromGoogle()
+                        }
+                    }
+                } catch {
+                    print("JSON parse error: \(error.localizedDescription)")
+                    if let body = String(data: data, encoding: .utf8) {
+                        print("Response body: \(body)")
+                    }
+                    DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
                 }
-                catch let err{
-                    print("Error Messsage: \(err.localizedDescription)")
-                }
-            }
-        }).resume()
+            }.resume()
+        }
+        
+        // Start fetching first page
+        fetchPage(pageToken: nil)
     }
     
     
