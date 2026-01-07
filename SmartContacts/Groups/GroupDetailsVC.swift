@@ -61,7 +61,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.titleView = container
         
         if UIDevice.current.userInterfaceIdiom == .phone {
-            let backButton = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .done, target: self, action: #selector(closeController))
+            let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(closeController))
             self.navigationItem.leftBarButtonItem = backButton
         }
         
@@ -185,6 +185,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let naviCon = UINavigationController(rootViewController: contactDetailVC)
         
         if UIDevice.current.userInterfaceIdiom == .phone {
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
         } else {

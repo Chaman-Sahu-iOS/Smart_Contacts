@@ -49,30 +49,42 @@ class ContactDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         stack.distribution = .equalSpacing
         stack.alignment    = .center
         stack.spacing      = 20.0
-        stack.backgroundColor = UIColor.lightGray
+        stack.backgroundColor = .clear
         return stack
     }()
     
 
     let contactNumberButton: UIButton = {
         let button = UIButton()
-       // let templateImage = UIImage(named: "call_icon")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(UIImage(named: "call_icon"), for: .normal)
+        button.setImage(UIImage(systemName: "phone.fill"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.6)
+        } else {
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        }
         return button
     }()
     
     
     let contactMailButton: UIButton = {
         let button = UIButton()
-       // let templateImage = UIImage(named: "mail_icon")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(UIImage(named: "mail_icon"), for: .normal)
+        button.setImage(UIImage(systemName: "envelope.fill"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.6)
+        } else {
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        }
         return button
     }()
     
     let contactMessageButton: UIButton = {
         let button = UIButton()
-      //  let templateImage = UIImage(named: "msg_icon")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(UIImage(named: "msg_icon"), for: .normal)
+        button.setImage(UIImage(systemName: "message.fill"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.backgroundColor = UIColor.secondarySystemBackground.withAlphaComponent(0.6)
+        } else {
+            button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        }
         return button
     }()
     
@@ -130,12 +142,12 @@ class ContactDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editContact))
         self.navigationController?.navigationBar.barTintColor      =  UIColor.white
-        self.navigationController?.navigationBar.isTranslucent     =  false
+        self.navigationController?.navigationBar.isTranslucent     =  true
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
        if UIDevice.current.userInterfaceIdiom == .phone {
-            let backButton = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .done, target: self, action: #selector(closeController))
-            self.navigationItem.leftBarButtonItem = backButton
+           let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(closeController))
+           self.navigationItem.leftBarButtonItem =  backButton
         }
         
         // When Contact list appear then default Contact Detail Value
@@ -260,6 +272,28 @@ class ContactDetailVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         stackView.addArrangedSubview(contactNumberButton)
         stackView.addArrangedSubview(contactMailButton)
         stackView.addArrangedSubview(contactMessageButton)
+
+        // Ensure larger, consistent sizes for action buttons
+        let buttonSize: CGFloat = 60
+        contactNumberButton.translatesAutoresizingMaskIntoConstraints = false
+        contactMailButton.translatesAutoresizingMaskIntoConstraints = false
+        contactMessageButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contactNumberButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            contactNumberButton.heightAnchor.constraint(equalToConstant: buttonSize),
+            contactMailButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            contactMailButton.heightAnchor.constraint(equalToConstant: buttonSize),
+            contactMessageButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            contactMessageButton.heightAnchor.constraint(equalToConstant: buttonSize)
+        ])
+
+        // Rounded "pill"/circular style like Phone app
+        contactNumberButton.layer.cornerRadius = buttonSize/2
+        contactNumberButton.layer.masksToBounds = true
+        contactMailButton.layer.cornerRadius = buttonSize/2
+        contactMailButton.layer.masksToBounds = true
+        contactMessageButton.layer.cornerRadius = buttonSize/2
+        contactMessageButton.layer.masksToBounds = true
         
         
         // Highlight Button if needed

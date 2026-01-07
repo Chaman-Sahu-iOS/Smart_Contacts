@@ -162,6 +162,7 @@ class FavoriteVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if UIDevice.current.userInterfaceIdiom == .phone {
             let vc = ContactDetailVC(contact: favoriteTableData[indexPath.row])
             let naviCon = UINavigationController(rootViewController: vc)
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
         } else {

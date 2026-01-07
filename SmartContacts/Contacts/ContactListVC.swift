@@ -210,6 +210,7 @@ class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if UIDevice.current.userInterfaceIdiom == .phone {
             let vc = ContactDetailVC(contact: ownContact)
             let naviCon = UINavigationController(rootViewController: vc)
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
         } else {
@@ -912,6 +913,7 @@ class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if UIDevice.current.userInterfaceIdiom == .phone {
                 let vc = ContactDetailVC(contact: contactValue[indexPath.row])
                 let naviCon = UINavigationController(rootViewController: vc)
+                naviCon.modalPresentationStyle = .fullScreen
                 naviCon.transitioningDelegate = self
                 self.present(naviCon, animated: true, completion: nil)
             } else {

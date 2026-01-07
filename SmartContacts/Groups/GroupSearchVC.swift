@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,UISearchResultsUpdating, UISearchDisplayDelegate  {
+class GroupSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,UISearchResultsUpdating  {
 
     // MARK:- Properties
     
@@ -48,15 +48,15 @@ class GroupSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             groupTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])
         
-        // Remove the gap between search result and search bar
-        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 20)
-        self.groupTableView.contentInsetAdjustmentBehavior = .never
+        // Use default layout behavior to avoid hiding results under nav bar
         
         // Register the search table view
         groupTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        // Fetch The data from The Contact Database
+        // Fetch the data and initialize filtered list
         fetchData()
+        filterTableData = groupListArray
+        self.groupTableView.reloadData()
     }
     
     func fetchData() {
@@ -165,6 +165,7 @@ class GroupSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let naviCon = UINavigationController(rootViewController: groupDetailVC)
         
         if UIDevice.current.userInterfaceIdiom == .phone {
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
         } else {
@@ -190,4 +191,3 @@ extension GroupSearchVC: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
-

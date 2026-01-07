@@ -164,7 +164,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         self.title  =   "New Contact"
         
         firstNameTextField.delegate      = self

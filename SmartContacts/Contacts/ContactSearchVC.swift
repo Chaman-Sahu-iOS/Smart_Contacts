@@ -188,6 +188,7 @@ class ContactSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             let vc = ContactDetailVC(contact: filterTableData[indexPath.row])
             let naviCon = UINavigationController(rootViewController: vc)
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
             

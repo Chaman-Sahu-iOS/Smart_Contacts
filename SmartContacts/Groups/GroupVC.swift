@@ -88,6 +88,7 @@ class GroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 let groupDetailVC = GroupDetailsVC()
                 let naviCon = UINavigationController(rootViewController: groupDetailVC)
+                naviCon.modalPresentationStyle = .fullScreen
                 self.showDetailViewController(naviCon, sender: self)
             }
         }
@@ -123,7 +124,8 @@ class GroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func searchFunction() {
         
         resultSearchController = UISearchController(searchResultsController: groupSearchVC)
-        resultSearchController.dimsBackgroundDuringPresentation = true
+        // Ensure results are visible and interactive
+        resultSearchController.obscuresBackgroundDuringPresentation = false
         resultSearchController.searchBar.sizeToFit()
         definesPresentationContext = true
         resultSearchController.searchResultsUpdater = groupSearchVC
@@ -171,7 +173,9 @@ class GroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
            // DispatchQueue.main.async {
                 if error != nil {
-                     self.handle(error: error!)
+                    DispatchQueue.main.async {
+                        self.handle(error: error!)
+                    }
                 } else {
                     for record in records!{
                         
@@ -333,6 +337,7 @@ class GroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let naviCon = UINavigationController(rootViewController: groupDetailVC)
         
         if UIDevice.current.userInterfaceIdiom == .phone {
+            naviCon.modalPresentationStyle = .fullScreen
             naviCon.transitioningDelegate = self
             self.present(naviCon, animated: true, completion: nil)
         } else {

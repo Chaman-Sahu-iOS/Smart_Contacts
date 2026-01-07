@@ -19,49 +19,62 @@ class CustomTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
+
         let containerView = transitionContext.containerView
-        
-        let toView = transitionContext.view(forKey: .to)!
-        let fromView = transitionContext.view(forKey: .from)!
-        
-        let width = fromView.frame.size.width
-        let centerFrame = CGRect(x: 0, y: 0, width: width, height: fromView.frame.height)
-        let completeLeftFrame = CGRect(x: -width, y: 0, width: width, height: fromView.frame.height)
-        let completeRightFrame = CGRect(x: +width, y: 0, width: width, height: fromView.frame.height)
-        
-        containerView.addSubview(toView)
-        toView.frame = completeRightFrame
-        
-        toView.layoutIfNeeded()
-        
+
+        // Safely obtain view controllers and views
+        guard let fromVC = transitionContext.viewController(forKey: .from),
+              let toVC = transitionContext.viewController(forKey: .to) else {
+            transitionContext.completeTransition(false)
+            return
+        }
+
+        guard let fromView = (transitionContext.view(forKey: .from) ?? fromVC.view),
+              let toView = (transitionContext.view(forKey: .to) ?? toVC.view) else {
+            transitionContext.completeTransition(false)
+            return
+        }
+
+        // Use container bounds for consistent, full-screen frames
+        let baseFrame = containerView.bounds
+        let width = baseFrame.size.width
+        let height = baseFrame.size.height
+
+        let centerFrame = baseFrame
+        let completeLeftFrame = CGRect(x: baseFrame.minX - width, y: baseFrame.minY, width: width, height: height)
+        let completeRightFrame = CGRect(x: baseFrame.minX + width, y: baseFrame.minY, width: width, height: height)
+
         if presenting {
-        UIView.animate(withDuration: duration,
-                        animations: {
-                                    fromView.frame = completeLeftFrame
-                                    toView.frame   = centerFrame
-                         },
-                        completion: { _ in
-                                    transitionContext.completeTransition(true)
-                         }
-                     )
+            toView.frame = completeRightFrame
+            containerView.addSubview(toView)
+
+            UIView.animate(withDuration: duration,
+                           animations: {
+                            fromView.frame = completeLeftFrame
+                            toView.frame   = centerFrame
+                           },
+                           completion: { _ in
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                           })
         } else {
-            
+            // Insert destination beneath the source when dismissing
             toView.frame = completeLeftFrame
-            
-            toView.layoutIfNeeded()
-            
+            containerView.insertSubview(toView, belowSubview: fromView)
+
             UIView.animate(withDuration: duration,
                            animations: {
                             fromView.frame = completeRightFrame
                             toView.frame   = centerFrame
-            },
+                           },
                            completion: { _ in
-                            transitionContext.completeTransition(true)
-            }
-            )
+                            // Remove the dismissed view to prevent overlay/black screens
+                            if !transitionContext.transitionWasCancelled {
+                                fromView.removeFromSuperview()
+                            }
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                           })
         }
-        
+
     }
     
 
