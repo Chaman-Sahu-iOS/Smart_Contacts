@@ -12,6 +12,7 @@ import GoogleSignIn
 import MBProgressHUD
 import CloudKit
 import WatchConnectivity
+import ImageIO
 
 class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -659,107 +660,156 @@ class ContactListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             MBProgressHUD.hide(for: self.view, animated: true)
             return
         }
-        
+
+        let processingQueue = DispatchQueue(label: "com.smartcontacts.googleimport", qos: .userInitiated)
+        let photoSession: URLSession = {
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 15
+            config.httpMaximumConnectionsPerHost = 6
+            return URLSession(configuration: config)
+        }()
+
+        func parsePerson(_ person: [String: Any]) -> (Contact, String?)? {
+            let contact = Contact()
+            contact.contactID = Int32.random(in: 0...Int32.max)
+
+            if let names = person["names"] as? [[String: Any]] {
+                let name0 = names.first
+                contact.firstName = name0?["givenName"] as? String ?? ""
+                contact.lastName  = name0?["familyName"] as? String ?? ""
+                if contact.firstName == "" && contact.lastName == "" {
+                    if let displayName = name0?["displayName"] as? String {
+                        let parts = displayName.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+                        contact.firstName = parts.first.map(String.init) ?? displayName
+                        contact.lastName = parts.count > 1 ? String(parts[1]) : ""
+                    }
+                }
+            }
+            if let orgs = person["organizations"] as? [[String: Any]] {
+                contact.companyName = orgs.first?["name"] as? String ?? ""
+            }
+            if let phones = person["phoneNumbers"] as? [[String: Any]] {
+                contact.mobile = phones.first?["value"] as? String ?? ""
+            }
+            if let emails = person["emailAddresses"] as? [[String: Any]] {
+                contact.email = emails.first?["value"] as? String ?? ""
+            }
+            self.ifContactValueNill(contact: contact)
+            if (contact.firstName ?? "").isEmpty && (contact.lastName ?? "").isEmpty {
+                return nil
+            }
+            let photoURLString = (person["photos"] as? [[String: Any]])?.first?["url"] as? String
+            return (contact, photoURLString)
+        }
+
+        // Downsample raw image data to a small JPEG thumbnail via ImageIO
+        // (no full-resolution UIImage is ever created — critical for memory).
+        func downsampledJPEGData(from data: Data, maxPixel: CGFloat = 200, quality: CGFloat = 0.6) -> Data? {
+            let srcOpts: [CFString: Any] = [kCGImageSourceShouldCache: false]
+            guard let src = CGImageSourceCreateWithData(data as CFData, srcOpts as CFDictionary) else { return nil }
+            let thumbOpts: [CFString: Any] = [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceShouldCacheImmediately: false,
+                kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceThumbnailMaxPixelSize: maxPixel
+            ]
+            guard let cgImage = CGImageSourceCreateThumbnailAtIndex(src, 0, thumbOpts as CFDictionary) else { return nil }
+            let image = UIImage(cgImage: cgImage)
+            return image.jpegData(compressionQuality: quality)
+        }
+
+        // Download photos concurrently with a bounded concurrency limit so we
+        // don't fan out hundreds of simultaneous requests.
+        func downloadPhotos(for items: [(Contact, String?)], completion: @escaping ([Contact]) -> Void) {
+            let group = DispatchGroup()
+            let semaphore = DispatchSemaphore(value: 4)
+            let downloadQueue = DispatchQueue(label: "com.smartcontacts.photodownload", attributes: .concurrent)
+
+            for (contact, urlString) in items {
+                guard let urlString = urlString, let url = URL(string: urlString) else { continue }
+                group.enter()
+                downloadQueue.async {
+                    semaphore.wait()
+                    var req = URLRequest(url: url)
+                    req.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+                    photoSession.dataTask(with: req) { data, _, _ in
+                        autoreleasepool {
+                            if let data = data, let thumb = downsampledJPEGData(from: data) {
+                                contact.contactImageData = thumb
+                            }
+                        }
+                        semaphore.signal()
+                        group.leave()
+                    }.resume()
+                }
+            }
+            group.notify(queue: processingQueue) {
+                completion(items.map { $0.0 })
+            }
+        }
+
         func fetchPage(pageToken: String?) {
             var components = URLComponents(string: "https://people.googleapis.com/v1/people/me/connections")!
             var queryItems: [URLQueryItem] = [
                 URLQueryItem(name: "personFields", value: "names,emailAddresses,phoneNumbers,organizations,photos"),
-                URLQueryItem(name: "pageSize", value: "1000")
+                URLQueryItem(name: "pageSize", value: "200")
             ]
             if let token = pageToken { queryItems.append(URLQueryItem(name: "pageToken", value: token)) }
             components.queryItems = queryItems
             guard let url = components.url else { return }
-            
+
             var request = URLRequest(url: url)
             request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-            
+
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     print("Error fetching People API contacts: \(error.localizedDescription)")
                     DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
                     return
                 }
-                guard let http = response as? HTTPURLResponse else { return }
-                guard let data = data else { return }
+                guard let http = response as? HTTPURLResponse, let data = data else {
+                    DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
+                    return
+                }
                 if !(200...299).contains(http.statusCode) {
                     let body = String(data: data, encoding: .utf8) ?? "<non-UTF8 body>"
                     print("People API HTTP \(http.statusCode): \(body)")
                     DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
                     return
                 }
-                do {
-                    guard let results = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+
+                processingQueue.async {
+                    guard let results = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                         print("People API response is not a JSON object")
                         DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
                         return
                     }
                     let connections = results["connections"] as? [[String: Any]] ?? []
-                    for person in connections {
-                        DispatchQueue.main.async {
-                            let contact = Contact()
-                            contact.contactID = Int32(Int.random(in: 0...1000000000))
-                            
-                            if let names = person["names"] as? [[String: Any]] {
-                                let name0 = names.first
-                                contact.firstName = name0?["givenName"] as? String ?? ""
-                                contact.lastName  = name0?["familyName"] as? String ?? ""
-                                if contact.firstName == "" && contact.lastName == "" {
-                                    // Fallback to displayName if parts missing
-                                    if let displayName = name0?["displayName"] as? String {
-                                        let parts = displayName.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
-                                        contact.firstName = parts.first.map(String.init) ?? displayName
-                                        contact.lastName = parts.count > 1 ? String(parts[1]) : ""
-                                    }
-                                }
-                            }
-                            if let orgs = person["organizations"] as? [[String: Any]] {
-                                contact.companyName = orgs.first?["name"] as? String ?? ""
-                            }
-                            if let phones = person["phoneNumbers"] as? [[String: Any]] {
-                                contact.mobile = phones.first?["value"] as? String ?? ""
-                            }
-                            if let emails = person["emailAddresses"] as? [[String: Any]] {
-                                contact.email = emails.first?["value"] as? String ?? ""
-                            }
-                            if let photos = person["photos"] as? [[String: Any]],
-                               let urlString = photos.first?["url"] as? String,
-                               let photoURL = URL(string: urlString + "?access_token=\(accessToken)") {
-                                if let imageData = try? Data(contentsOf: photoURL) {
-                                    contact.contactImage = UIImage(data: imageData)
-                                }
-                            }
-                            
-                            self.ifContactValueNill(contact: contact)
-                            if contact.firstName != "" || contact.lastName != "" {
-                                ContactDataManager.sharedManager.add(contact: contact)
-                                if AppSettings.shared.isSynchWithICloud == true {
-                                    SettingsVC.shareManager.saveToiCloud(contact: contact)
-                                }
-                            }
-                        }
-                    }
+                    let parsed = connections.compactMap { parsePerson($0) }
                     let nextToken = results["nextPageToken"] as? String
-                    if let nextToken = nextToken, !nextToken.isEmpty {
-                        fetchPage(pageToken: nextToken)
-                    } else {
-                        DispatchQueue.main.async {
-                            ContactDataManager.sharedManager.saveContactList()
-                            self.refreshContactTableList()
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            self.signoutFromGoogle()
+
+                    downloadPhotos(for: parsed) { contactsWithPhotos in
+                        ContactDataManager.sharedManager.addContactsBatch(contactsWithPhotos) {
+                            if AppSettings.shared.isSynchWithICloud == true {
+                                for c in contactsWithPhotos {
+                                    SettingsVC.shareManager.saveToiCloud(contact: c)
+                                }
+                            }
+                            if let nextToken = nextToken, !nextToken.isEmpty {
+                                fetchPage(pageToken: nextToken)
+                            } else {
+                                DispatchQueue.main.async {
+                                    self.refreshContactTableList()
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                    self.signoutFromGoogle()
+                                }
+                            }
                         }
                     }
-                } catch {
-                    print("JSON parse error: \(error.localizedDescription)")
-                    if let body = String(data: data, encoding: .utf8) {
-                        print("Response body: \(body)")
-                    }
-                    DispatchQueue.main.async { MBProgressHUD.hide(for: self.view, animated: true) }
                 }
             }.resume()
         }
-        
-        // Start fetching first page
+
         fetchPage(pageToken: nil)
     }
     

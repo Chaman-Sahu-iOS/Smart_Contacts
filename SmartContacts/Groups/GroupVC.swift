@@ -251,10 +251,20 @@ class GroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func handle(error: Error) {
-        let alert = UIAlertController(title: "Error", message: String(describing: error.localizedDescription), preferredStyle: .alert)
+        let nsError = error as NSError
+        var details = "[CloudKit] \(nsError.domain) code=\(nsError.code) \(nsError.localizedDescription)"
+        let userInfoDesc = nsError.userInfo.map { "\($0.key): \($0.value)" }.joined(separator: ", ")
+        if !userInfoDesc.isEmpty { details += " userInfo={\(userInfoDesc)}" }
+        if let ckError = error as? CKError {
+            details += " ckCode=\(ckError.code.rawValue) (\(ckError.code))"
+            if let partial = ckError.userInfo[CKPartialErrorsByItemIDKey] as? [AnyHashable: Any], !partial.isEmpty {
+                details += " partialErrors=\(partial)"
+            }
+        }
+        print(details)
+        let alert = UIAlertController(title: "Error", message: nsError.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(alert, animated: true, completion: nil)
-        // self.refreshControl!.endRefreshing()
     }
     
     func ifContactValueNill(contact: Contact) {

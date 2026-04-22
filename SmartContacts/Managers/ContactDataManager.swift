@@ -61,14 +61,14 @@ class ContactDataManager {
     }
     
     func add(contact:Contact) {
-        
+
         let contactArray = getContactsList()
-        
+
         if !isPresent(contactArray: contactArray, contact: contact) {
-        
-            
+
+
                 let contactData      = NSEntityDescription.insertNewObject(forEntityName: "Contacts", into:   persistentContainer.viewContext) as! Contacts
-                
+
                 contactData.contactId = (contact.contactID!)
                 contactData.firstName = contact.firstName
                 contactData.lastName  = contact.lastName
@@ -76,10 +76,84 @@ class ContactDataManager {
                 contactData.email       = contact.email
                 contactData.mobile      = contact.mobile
                 contactData.isFavorite  = contact.isFavorite!
-                
-                let image: UIImage = contact.contactImage!
-                let imageData = image.jpegData(compressionQuality: 1.0)
-                contactData.contactImage = imageData as NSData?
+
+                if let image = contact.contactImage {
+                    contactData.contactImage = image.jpegData(compressionQuality: 0.5) as NSData?
+                }
+        }
+    }
+
+    /// Batch-inserts many contacts in a single background transaction.
+    /// Avoids the O(N²) duplicate-check + UIImage-decode blow-up that crashes
+    /// the app when importing hundreds of Google contacts at once.
+    func addContactsBatch(_ contacts: [Contact], completion: @escaping () -> Void) {
+        persistentContainer.performBackgroundTask { context in
+            context.undoManager = nil
+
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Contacts")
+            fetchRequest.propertiesToFetch = ["firstName", "mobile"]
+            fetchRequest.resultType = .dictionaryResultType
+
+            var seen = Set<String>()
+            if let rows = try? context.fetch(fetchRequest) as? [[String: Any]] {
+                for row in rows {
+                    let fn = row["firstName"] as? String ?? ""
+                    let mb = row["mobile"] as? String ?? ""
+                    seen.insert("\(fn)|\(mb)")
+                }
+            }
+
+            let chunkSize = 50
+            var sinceLastSave = 0
+
+            for contact in contacts {
+                autoreleasepool {
+                    let fn = contact.firstName ?? ""
+                    let mb = contact.mobile ?? ""
+                    let key = "\(fn)|\(mb)"
+                    if seen.contains(key) { return }
+                    seen.insert(key)
+
+                    let entity = NSEntityDescription.insertNewObject(forEntityName: "Contacts", into: context) as! Contacts
+                    entity.contactId = contact.contactID ?? Int32.random(in: 0...Int32.max)
+                    entity.firstName = contact.firstName
+                    entity.lastName = contact.lastName
+                    entity.companyName = contact.companyName
+                    entity.email = contact.email
+                    entity.mobile = contact.mobile
+                    entity.isFavorite = contact.isFavorite ?? false
+
+                    if let data = contact.contactImageData {
+                        entity.contactImage = data as NSData
+                    } else if let image = contact.contactImage {
+                        entity.contactImage = image.jpegData(compressionQuality: 0.5) as NSData?
+                    }
+                    // Release any references the caller held to help ARC free them.
+                    contact.contactImageData = nil
+                    contact.contactImage = nil
+
+                    sinceLastSave += 1
+                }
+
+                if sinceLastSave >= chunkSize {
+                    do {
+                        try context.save()
+                        context.reset()
+                        // Re-seed `seen` is not needed: we already track in-memory.
+                    } catch {
+                        print("Batch save error (chunk): \(error)")
+                    }
+                    sinceLastSave = 0
+                }
+            }
+
+            do {
+                if context.hasChanges { try context.save() }
+            } catch {
+                print("Batch save error (final): \(error)")
+            }
+
+            DispatchQueue.main.async { completion() }
         }
     }
     

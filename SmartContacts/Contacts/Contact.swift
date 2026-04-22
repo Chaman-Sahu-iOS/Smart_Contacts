@@ -18,6 +18,10 @@ class Contact: NSObject {
     var mobile: String?
     var email: String?
     var contactImage: UIImage?
+    /// Pre-compressed JPEG data. When set, batch inserts prefer this over
+    /// re-encoding `contactImage`, which avoids keeping decoded UIImages
+    /// in memory during large Google Contacts imports.
+    var contactImageData: Data?
     var isFavorite: Bool?
     var isSelected: Bool = false
     var qrCodeImage: UIImage = UIImage()
